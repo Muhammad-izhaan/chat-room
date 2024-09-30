@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2C2F33;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+header {
+    background-color: #363737; /* Arctic Grey */
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #FFFFFF; /* White text color */
+}
+
+.chat-container {
+    width: 500px;
+    margin: 20px auto;
+    background: #23272A;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#chat-window {
+    height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border-bottom: 1px solid #7289DA;
+}
+
+.input-container {
+    display: none; /* Hide until name is set */
+    padding: 10px;
+    background: #2C2F33;
+}
+
+.input-container input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #7289DA;
+    border-radius: 4px;
+    background: #23272A;
+    color: #FFFFFF;
+}
+
+.input-container button {
+    padding: 10px;
+    border: none;
+    background-color: #7289DA;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.sent {
+    text-align: right;
+    margin: 5px 0;
+    color: #43B581;
+}
+
+.received {
+    text-align: left;
+    margin: 5px 0;
+    color: #F04747;
+}
+
+.name-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #23272A;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name-popup input[type="text"] {
+    padding: 10px;
+    border: 1px solid #7289DA;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: #2C2F33;
+    color: #FFFFFF;
+}
+
+.name-popup button {
+    padding: 10px;
+    border: none;
+    background-color: #7289DA;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: transparent; /* No background */
+    color: rgba(255, 255, 255, 0.7); /* Light white color */
+    text-align: center;
+    padding: 10px;
+    position: absolute; /* Make footer stick to the bottom */
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
