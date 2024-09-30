@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Chat Room - Izhaan's Chat Hub</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Izhaan's Chat Hub</h1>
+    </header>
+    
+    <div class="chat-container">
+        <div id="chat-window">
+            <div id="messages"></div>
+        </div>
+        <div class="input-container" id="input-container">
+            <input type="text" id="message" placeholder="Type your message..." required>
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <div class="name-popup" id="name-popup">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <button id="set-name-btn">Set Name</button>
+    </div>
+
+    <footer>
+        <p>Developed and Designed by Izhaan</p>
+    </footer>
+
+    <script>
+        const socket = io();
+        let userName = '';
+
+        document.getElementById('set-name-btn').onclick = function() {
+            const nameInput = document.getElementById('name');
+            if (nameInput.value) {
+                userName = nameInput.value;
+                document.getElementById('name-popup').style.display = 'none';
+                document.getElementById('input-container').style.display = 'flex';
+            }
+        };
+
+        document.getElementById('send-btn').onclick = function() {
+            const message = document.getElementById('message').value;
+            if (userName && message) {
+                socket.emit('send_message', { name: userName, message: message });
+                document.getElementById('message').value = '';
+            }
+        };
+
+        socket.on('receive_message', function(data) {
+            const messagesDiv = document.getElementById('messages');
+            const newMessage = document.createElement('div');
+            newMessage.className = data.name === userName ? 'sent' : 'received';
+            newMessage.innerHTML = `<strong>${data.name}:</strong> ${data.message}`;
+            messagesDiv.appendChild(newMessage);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to the bottom
+        });
+    </script>
+</body>
+</html>
